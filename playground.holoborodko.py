@@ -54,13 +54,12 @@ def deltas(magnitudes, limena):
 # <codecell>
 
 def segmentation(coordinates, limena):
-    start = 0
-    end = 1
-    idx = deltas(magnitude(coordinates))
-    segments = [idx[coordinates[idx[start]] : coordinates[idx[end]]] for index, x in idx]
+    start, end = (0, 1)
+    idx = deltas(magnitude(coordinates), limena)
+    return [coordinates[index[start] : index[end]] for index in idx]
     
-
-    
+segments = segmentation(left, (1.5, 10))
+ 
 
 # <markdowncell>
 
@@ -84,7 +83,7 @@ right = numpy.array(data[['xR','yR', 'zR']]).view(numpy.float).reshape(-1, 3)
 for idx in left_deltas:
     start = 0
     end = 1
-    print idx[start], 'to', idx[end]
+    print idx[start], 'to', idx[end], '\n', left[idx[start] : idx[end]]
     #print left[idx[start]], ' to ', left[idx[end]]
 
 # <markdowncell>
